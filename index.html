@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fullscreen Video</title>
+    <title>Fullscreen YouTube Video</title>
     <style>
         * {
             margin: 0;
@@ -16,33 +16,29 @@
             background: black;
             overflow: hidden;
         }
-        video {
+        .video-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100vw;
             height: 100vh;
-            object-fit: cover;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <video id="bg-video" autoplay loop muted playsinline preload="auto">
-        <source src="https://raw.githubusercontent.com/michael-xu99/video-webpage/refs/heads/main/videos/black.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const video = document.getElementById("bg-video");
-            
-            // Try to autoplay, if blocked, wait for user interaction
-            video.play().catch(error => {
-                console.log("Autoplay blocked. Waiting for user interaction...");
-                document.addEventListener("click", () => video.play(), { once: true });
-            });
-        });
-    </script>
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/u9H3dXFv17Y?autoplay=1&loop=1&mute=1&controls=0&playlist=u9H3dXFv17Y" 
+            frameborder="0" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
+    </div>
 </body>
 </html>
