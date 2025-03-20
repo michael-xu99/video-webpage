@@ -8,12 +8,13 @@
         * {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            box-sizing: border-box;
         }
         html, body {
             height: 100%;
             width: 100%;
             background: black;
+            overflow: hidden;
         }
         video {
             position: absolute;
@@ -27,9 +28,17 @@
     </style>
 </head>
 <body>
-    <video autoplay loop muted playsinline>
+    <video id="bg-video" autoplay loop muted playsinline>
         <source src="black.mp4" type="video/mp4">
+        <source src="black.webm" type="video/webm">
         Your browser does not support the video tag.
     </video>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("bg-video");
+            video.play().catch(error => console.log("Autoplay blocked:", error));
+        });
+    </script>
 </body>
 </html>
