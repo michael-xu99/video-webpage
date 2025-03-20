@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <video id="bg-video" autoplay loop muted playsinline>
+    <video id="bg-video" autoplay loop muted playsinline preload="auto">
         <source src="videos/black.mp4" type="video/mp4">
         <source src="videos/black.webm" type="video/webm">
         Your browser does not support the video tag.
@@ -37,7 +37,10 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const video = document.getElementById("bg-video");
-            video.play().catch(error => console.log("Autoplay blocked:", error));
+            video.play().catch(error => {
+                console.log("Autoplay blocked. Trying manual play...");
+                document.body.addEventListener("click", () => video.play());
+            });
         });
     </script>
 </body>
