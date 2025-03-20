@@ -4,22 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autoplay Local Video</title>
+    <style>
+        /* Make the video responsive */
+        video {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
     <!-- Video Element -->
-    <video id="local-video" width="560" height="315" controls autoplay muted loop style="width: 100%; height: auto;">
-        <source src="https://raw.githubusercontent.com/michael-xu99/video-webpage/refs/heads/main/videos/black.mp4" type="video/mp4">
+    <video id="local-video" controls autoplay muted loop>
+        <source src="https://raw.githubusercontent.com/username/repository-name/main/black.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
     <script>
         // Optional: Force fullscreen on user interaction
         const video = document.getElementById('local-video');
-        video.requestFullscreen = video.requestFullscreen || video.mozRequestFullScreen || video.webkitRequestFullscreen || video.msRequestFullscreen;
 
         // Trigger fullscreen on click (may require user interaction)
         document.addEventListener('click', () => {
-            video.requestFullscreen();
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
         });
     </script>
 </body>
