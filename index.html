@@ -30,16 +30,17 @@
 <body>
     <video id="bg-video" autoplay loop muted playsinline preload="auto">
         <source src="videos/black.mp4" type="video/mp4">
-        <source src="videos/black.webm" type="video/webm">
         Your browser does not support the video tag.
     </video>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const video = document.getElementById("bg-video");
+            
+            // Try to autoplay, if blocked, wait for user interaction
             video.play().catch(error => {
-                console.log("Autoplay blocked. Trying manual play...");
-                document.body.addEventListener("click", () => video.play());
+                console.log("Autoplay blocked. Waiting for user interaction...");
+                document.addEventListener("click", () => video.play(), { once: true });
             });
         });
     </script>
