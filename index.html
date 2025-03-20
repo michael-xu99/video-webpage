@@ -3,36 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autoplay Local Video</title>
-    <style>
-        /* Make the video responsive */
-        video {
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-        }
-    </style>
+    <title>YouTube Autoplay Fullscreen</title>
 </head>
 <body>
-    <!-- Video Element -->
-    <video id="local-video" controls autoplay muted loop>
-        <source src="https://raw.githubusercontent.com/michael-xu99/video-webpage/refs/heads/main/videos/black.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <!-- YouTube IFrame -->
+    <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/u9H3dXFv17Y?autoplay=1&mute=1&enablejsapi=1&fs=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     <script>
-        // Optional: Force fullscreen on user interaction
-        const video = document.getElementById('local-video');
+        // Optional: Use JavaScript to force fullscreen (may require user interaction)
+        const iframe = document.getElementById('youtube-video');
+        iframe.requestFullscreen = iframe.requestFullscreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullscreen || iframe.msRequestFullscreen;
 
-        // Trigger fullscreen on click (may require user interaction)
+        // Trigger fullscreen (may require user interaction)
         document.addEventListener('click', () => {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) { // Safari
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
-                video.msRequestFullscreen();
-            }
+            iframe.requestFullscreen();
         });
     </script>
 </body>
