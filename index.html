@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Autoplay Fullscreen</title>
+    <title>Autoplay Local Video</title>
 </head>
 <body>
-    <!-- YouTube IFrame -->
-    <iframe id="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/u9H3dXFv17Y?autoplay=1&mute=1&enablejsapi=1&fs=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- Video Element -->
+    <video id="local-video" width="560" height="315" controls autoplay muted loop style="width: 100%; height: auto;">
+        <source src="https://raw.githubusercontent.com/username/repository-name/main/black.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
     <script>
-        // Optional: Use JavaScript to force fullscreen (may require user interaction)
-        const iframe = document.getElementById('youtube-video');
-        iframe.requestFullscreen = iframe.requestFullscreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullscreen || iframe.msRequestFullscreen;
+        // Optional: Force fullscreen on user interaction
+        const video = document.getElementById('local-video');
+        video.requestFullscreen = video.requestFullscreen || video.mozRequestFullScreen || video.webkitRequestFullscreen || video.msRequestFullscreen;
 
-        // Trigger fullscreen (may require user interaction)
+        // Trigger fullscreen on click (may require user interaction)
         document.addEventListener('click', () => {
-            iframe.requestFullscreen();
+            video.requestFullscreen();
         });
     </script>
 </body>
