@@ -11,6 +11,21 @@
             height: auto;
             max-width: 100%;
         }
+
+        /* Style for the fullscreen button */
+        #fullscreen-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #fullscreen-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -20,13 +35,15 @@
         Your browser does not support the video tag.
     </video>
 
-    
+    <!-- Fullscreen Button -->
+    <button id="fullscreen-btn">Go Fullscreen</button>
+
     <script>
-        // Optional: Force fullscreen on user interaction
         const video = document.getElementById('local-video');
 
-        // Trigger fullscreen on click (may require user interaction)
-        document.addEventListener('click', () => {
+        // Fullscreen button functionality
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        fullscreenBtn.addEventListener('click', () => {
             if (video.requestFullscreen) {
                 video.requestFullscreen();
             } else if (video.webkitRequestFullscreen) { // Safari
@@ -35,6 +52,19 @@
                 video.msRequestFullscreen();
             }
         });
+
+        // Optional: Handle autoplay blocking
+        video.addEventListener('play', () => {
+            console.log('Video is playing');
+        });
+
+        video.addEventListener('pause', () => {
+            console.log('Video is paused (autoplay may be blocked)');
+            alert('Click the video to start playback.');
+        });
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
